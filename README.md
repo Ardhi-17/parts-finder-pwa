@@ -24,7 +24,7 @@ Buka `http://localhost:3000`.
 
 1. Buat project Supabase.
 2. Jalankan SQL di `database/schema.sql`.
-3. Copy `.env.example` menjadi `.env.local`.
+3. buat file `.env.local`.
 4. Isi `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 
 ## Format Excel
