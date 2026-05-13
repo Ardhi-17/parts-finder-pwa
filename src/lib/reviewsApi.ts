@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import { ReviewInput, ReviewUpdateInput, UserReview } from "@/types/review";
 
-export async function createUserReview(input: ReviewInput): Promise<UserReview> {
+export async function createUserReview(input: ReviewInput): Promise<void> {
   if (!supabase) {
     throw new Error("Supabase belum terhubung. Cek file .env.local.");
   }
@@ -14,18 +14,12 @@ export async function createUserReview(input: ReviewInput): Promise<UserReview> 
     is_visible: false,
   };
 
-  const { data, error } = await supabase
-    .from("user_reviews")
-    .insert(payload)
-    .select()
-    .single();
+  const { error } = await supabase.from("user_reviews").insert(payload);
 
   if (error) {
     console.error("Create review error:", error);
     throw new Error(error.message || "Gagal mengirim ulasan.");
   }
-
-  return data as UserReview;
 }
 
 export async function fetchVisibleReviews(): Promise<UserReview[]> {
